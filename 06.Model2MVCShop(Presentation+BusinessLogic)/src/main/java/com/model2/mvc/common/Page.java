@@ -5,7 +5,7 @@ package com.model2.mvc.common;
 public class Page {
 	
 	///Field
-	private int currentPage;		// 현재페이지
+	private String currentPage;		// 현재페이지
 	private int totalCount;			// 총 게시물 수
 	private int pageUnit;			// 하단 페이지 번호 화면에 보여지는 수
 	private int pageSize;			// 한 페이지당 보여지는 게시물수
@@ -16,15 +16,15 @@ public class Page {
 	///Constructor
 	public Page() {
 	}
-	public Page( int currentPage, int totalCount,	int pageUnit, int pageSize ) {
+	public Page( String currentPage, int totalCount,	int pageUnit, int pageSize ) {
 		this.totalCount = totalCount;
 		this.pageUnit = pageUnit;
 		this.pageSize = pageSize;
 		
 		this.maxPage = (pageSize == 0) ? totalCount :  (totalCount-1)/pageSize +1;
-		this.currentPage = ( currentPage > maxPage) ? maxPage : currentPage;
+		this.currentPage = ( Integer.parseInt(currentPage) > maxPage) ? Integer.toString(maxPage) : currentPage;
 		
-		this.beginUnitPage = ( (currentPage-1) / pageUnit ) * pageUnit +1 ;
+		this.beginUnitPage = ((Integer.parseInt(currentPage)-1) / pageUnit ) * pageUnit +1 ;
 		
 		if( maxPage <= pageUnit ){
 			this.endUnitPage = maxPage;
@@ -38,9 +38,9 @@ public class Page {
 	
 	///Mehtod
 	public int getCurrentPage() {
-		return currentPage;
+		return Integer.parseInt(currentPage);
 	}
-	public void setCurrentPage(int currentPage) {
+	public void setCurrentPage(String currentPage) {
 		this.currentPage = currentPage;
 	}
 	public int getTotalCount() {

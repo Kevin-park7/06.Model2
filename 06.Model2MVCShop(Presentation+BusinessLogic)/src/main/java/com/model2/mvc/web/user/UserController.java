@@ -152,8 +152,8 @@ public class UserController {
 		
 		System.out.println("/listUser.do");
 		
-		if(search.getCurrentPage() ==0 ){
-			search.setCurrentPage(1);
+		if(search.getCurrentPage() ==null ){
+			search.setCurrentPage("1");
 		}
 		search.setPageSize(pageSize);
 		

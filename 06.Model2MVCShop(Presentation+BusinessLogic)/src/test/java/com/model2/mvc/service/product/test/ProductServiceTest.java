@@ -155,7 +155,7 @@ public class ProductServiceTest {
 	 public void testGetProductListAll() throws Exception{
 		 
 	 	Search search = new Search();
-	 	search.setCurrentPage(1);
+	 	search.setCurrentPage("1");
 	 	search.setPageSize(3);
 	 	Map<String,Object> map = productService.getProductList(search);
 	 	
@@ -171,7 +171,7 @@ public class ProductServiceTest {
 	 	
 	 	System.out.println("=======================================");
 	 	
-	 	search.setCurrentPage(2);
+	 	search.setCurrentPage("2");
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
 	 	search.setSearchKeyword("");
@@ -192,7 +192,7 @@ public class ProductServiceTest {
 	 public void testGetProductListByProdNo() throws Exception{
 		 
 	 	Search search = new Search();
-	 	search.setCurrentPage(1);
+	 	search.setCurrentPage("1");
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
 	 	search.setSearchKeyword("10001");

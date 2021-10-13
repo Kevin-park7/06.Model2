@@ -159,7 +159,7 @@ public class UserServiceTest {
 	 public void testGetUserListAll() throws Exception{
 		 
 	 	Search search = new Search();
-	 	search.setCurrentPage(1);
+	 	search.setCurrentPage("1");
 	 	search.setPageSize(3);
 	 	Map<String,Object> map = userService.getUserList(search);
 	 	
@@ -174,7 +174,7 @@ public class UserServiceTest {
 	 	
 	 	System.out.println("=======================================");
 	 	
-	 	search.setCurrentPage(1);
+	 	search.setCurrentPage("1");
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
 	 	search.setSearchKeyword("");
@@ -194,7 +194,7 @@ public class UserServiceTest {
 	 public void testGetUserListByUserId() throws Exception{
 		 
 	 	Search search = new Search();
-	 	search.setCurrentPage(1);
+	 	search.setCurrentPage("1");
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("0");
 	 	search.setSearchKeyword("admin");
@@ -229,7 +229,7 @@ public class UserServiceTest {
 	 public void testGetUserListByUserName() throws Exception{
 		 
 	 	Search search = new Search();
-	 	search.setCurrentPage(1);
+	 	search.setCurrentPage("1");
 	 	search.setPageSize(3);
 	 	search.setSearchCondition("1");
 	 	search.setSearchKeyword("SCOTT");

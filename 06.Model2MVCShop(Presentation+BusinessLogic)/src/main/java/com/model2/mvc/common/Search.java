@@ -5,7 +5,7 @@ package com.model2.mvc.common;
 public class Search {
 	
 	///Field
-	private int currentPage;
+	private String currentPage;
 	private String searchCondition;
 	private String searchKeyword;
 	private int pageSize;
@@ -28,10 +28,10 @@ public class Search {
 		this.pageSize = paseSize;
 	}
 	
-	public int getCurrentPage() {
+	public String getCurrentPage() {
 		return currentPage;
 	}
-	public void setCurrentPage(int currentPage) {
+	public void setCurrentPage(String currentPage) {
 		this.currentPage = currentPage;
 	}
 
@@ -51,11 +51,11 @@ public class Search {
 	
 	//==> Select Query 시 ROWNUM 마지막 값 
 	public int getEndRowNum() {
-		return getCurrentPage()*getPageSize();
+		return Integer.parseInt(getCurrentPage())*getPageSize();
 	}
 	//==> Select Query 시 ROWNUM 시작 값
 	public int getStartRowNum() {
-		return (getCurrentPage()-1)*getPageSize()+1;
+		return (Integer.parseInt(getCurrentPage())-1)*getPageSize()+1;
 	}
 
 	@Override

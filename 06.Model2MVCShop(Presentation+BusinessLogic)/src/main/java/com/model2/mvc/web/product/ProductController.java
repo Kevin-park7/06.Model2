@@ -20,6 +20,7 @@ import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.product.ProductService;
 
 
+
 //==> 회원관리 Controller
 @Controller
 public class ProductController {
@@ -157,9 +158,11 @@ public class ProductController {
 	public String listProduct( @ModelAttribute("search") Search search , Model model , HttpServletRequest request) throws Exception{
 		
 		System.out.println("/listProduct.do");
-		
-		if(search.getCurrentPage() ==0 ){
-			search.setCurrentPage(1);
+		String keyword = (search.getSearchKeyword()==null)? "":search.getSearchKeyword();
+		search.setSearchKeyword(keyword);
+		if(search.getCurrentPage() == null || search.getCurrentPage().equals("")){
+			
+			search.setCurrentPage("1");
 		}
 		search.setPageSize(pageSize);
 		
