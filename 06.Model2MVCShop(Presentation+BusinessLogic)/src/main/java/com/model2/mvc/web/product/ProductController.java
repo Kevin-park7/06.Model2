@@ -2,7 +2,9 @@ package com.model2.mvc.web.product;
 
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,12 +73,32 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/getProduct.do")
-	public String getProduct( @RequestParam("prodNo") int prodNo , Model model ) throws Exception {
+	public String getProduct( @RequestParam("prodNo") int prodNo , Model model ,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
 		System.out.println("/getProduct.do");
 		//Business Logic
 		Product product = productService.getProduct(prodNo);
 		// Model 과 View 연결
+		String prvHistory = "";
+		// Cookie는 Request, Response를 가지고 불러오기 또는 전달이 이루어진다.
+		// 현재 Project에서 사용되는 Cookie의 구조는 Key "history", value: prodNo이면서 각 ProdNo은 , 로 구분 되어있음.
+		
+		
+		for (Cookie c: request.getCookies()){
+			if (c.getName().equals("history")){
+
+				prvHistory=c.getValue();
+				System.out.println("getProduct: "+ prvHistory);			
+			}
+		}
+		
+		
+		System.out.println("getProduct: "+ prvHistory);
+		System.out.println("getProduct: "+ prodNo+","+prvHistory);
+		Cookie cookie = new Cookie("history", prodNo+","+prvHistory);	// 쿠키 생성
+		cookie.setMaxAge(60*60);	// 헌재 Cookie의 유지기간
+		
+		response.addCookie(cookie);
 		model.addAttribute("vo", product);
 		
 		return "forward:/product/getProduct.jsp";
